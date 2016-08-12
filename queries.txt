@@ -1,0 +1,41 @@
+Queries
+query todoes {
+  viewer {
+    allTodos(first: 10, orderBy: "createdAt"){
+      edges {
+        node {
+          id
+          text
+          complete
+        }
+      }
+    }
+  }
+}
+
+
+
+Mutations
+
+mutation addTodo($text: String!) {
+    createTodo(complete: false, text: $text) { id }
+}
+
+[1] Create Todo 
+======================= Mutation
+mutation createTodo($input: _CreateTodoInput!) {
+  createTodo(input: $input){
+    changedTodo {
+      id
+      text
+      complete
+    }
+  }
+}
+======================== Query Variables
+{
+  "input": {
+  	"text": "Todo 3",
+    "complete": false
+  }
+}
