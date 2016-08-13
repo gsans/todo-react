@@ -3,7 +3,6 @@ import Filters from './Filters'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import gql from 'graphql-tag'
-import { toggleTodo } from './AsyncActions'
 
 import { connect } from 'react-apollo'
 
@@ -16,7 +15,7 @@ class TodoApp extends React.Component {
         <TodoList
           todos={this.props.todos.allTodoes || []}
           filter={this.props.filter}
-          toggleTodo={this.props.toggleTodo}
+          toggleTodo={this.props.mutations.toggleTodo}
         />
         <Filters setFilter={this.props.setFilter} filter={this.props.filter} refetch={this.props.todos.refetch} />
       </div>
@@ -37,9 +36,6 @@ const TodoAppLinked = connect({
           type: 'SET_FILTER',
           filter,
         })
-      },
-      toggleTodo: (id, complete) => {
-        dispatch(toggleTodo(id, complete))
       },
     }
   },
