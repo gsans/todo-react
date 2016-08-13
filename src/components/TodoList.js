@@ -26,11 +26,9 @@ export default class TodoList extends React.Component {
 
   render () {
     return (
-      <section className='main'>
-        <ul className='todo-list'>
-          {this.renderTodos()}
-        </ul>
-      </section>
+      <ul className='todo-list'>
+        {this.renderTodos()}
+      </ul>
     )
   }
 }
