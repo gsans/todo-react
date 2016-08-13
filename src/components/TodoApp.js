@@ -14,7 +14,7 @@ class TodoApp extends React.Component {
         <AddTodo addTodo={this.props.mutations.addTodo} />
         <TodoList
           todos={this.props.todos.allTodoes || []}
-          filter={this.props.filter}
+          filter={this.props.currentFilter}
           toggleTodo={this.props.mutations.toggleTodo}
         />
         <Filters setFilter={this.props.setFilter} filter={this.props.currentFilter} />
@@ -26,7 +26,7 @@ class TodoApp extends React.Component {
 const TodoAppLinked = connect({
   mapStateToProps (state) {
     return {
-      filter: state.filter,
+      currentFilter: state.filter,
     }
   },
   mapDispatchToProps (dispatch) {
