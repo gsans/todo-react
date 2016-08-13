@@ -1,25 +1,22 @@
 import React from 'react'
-import classnames from 'classnames'
+import FilterLink from './FilterLink'
 
 export default class Filters extends React.Component {
 
   render () {
     return (
-      <p>
+      <div>
         Show: {' '}
-        <a href='#' onClick={() => this.props.setFilter('SHOW_ALL')}
-          className={classnames({ inactive: this.props.filter !== 'SHOW_ALL' })}>
+        <FilterLink selected={this.props.filter} filter={'SHOW_ALL'} setFilter={this.props.setFilter}>
           All
-        </a>{', '}
-        <a href='#' onClick={() => this.props.setFilter('SHOW_ACTIVE')}
-          className={classnames({ inactive: this.props.filter !== 'SHOW_ACTIVE' })}>
+        </FilterLink>{', '}
+        <FilterLink selected={this.props.filter} filter={'SHOW_ACTIVE'} setFilter={this.props.setFilter}>
           Active
-        </a>{', '}
-        <a href='#' onClick={() => this.props.setFilter('SHOW_COMPLETED')}
-          className={classnames({ inactive: this.props.filter !== 'SHOW_COMPLETED' })}>
+        </FilterLink>{', '}
+        <FilterLink selected={this.props.filter} filter={'SHOW_COMPLETED'} setFilter={this.props.setFilter}>
           Completed
-        </a>
-      </p>
+        </FilterLink>
+      </div>
     )
   }
 }
