@@ -24,11 +24,7 @@ class TodoApp extends React.Component {
 }
 
 const TodoAppLinked = connect({
-  mapStateToProps (state) {
-    return {
-      currentFilter: state.filter,
-    }
-  },
+  // currentFilter state
   mapDispatchToProps (dispatch) {
     return {
       setFilter: (filter) => {
@@ -36,6 +32,28 @@ const TodoAppLinked = connect({
           type: 'SET_FILTER',
           filter,
         })
+      },
+    }
+  },
+  mapStateToProps (state) {
+    return {
+      currentFilter: state.filter,
+    }
+  },
+  // GraphQL
+  mapQueriesToProps () {
+    return {
+      todos: {
+        query: gql`
+          query todos {
+            allTodoes {
+              id
+              complete
+              text
+            }
+          }
+        `,
+        forceFetch: true,
       },
     }
   },
@@ -85,22 +103,6 @@ const TodoAppLinked = connect({
           },
         },
       }),
-    }
-  },
-  mapQueriesToProps () {
-    return {
-      todos: {
-        query: gql`
-          query todos {
-            allTodoes {
-              id
-              complete
-              text
-            }
-          }
-        `,
-        forceFetch: false,
-      },
     }
   },
 })(TodoApp)
