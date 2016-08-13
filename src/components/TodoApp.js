@@ -44,30 +44,54 @@ const TodoAppLinked = connect({
       addTodo: (text) => ({
         mutation: gql`
           mutation addTodo($text: String!) {
-            createTodo(complete: false, text: $text) { id text complete }
-          }
-        `,
+            createTodo(text: $text, complete: false) { id }
+          }`,
         variables: { text },
+        updateQueries: {
+          todos: (state, { mutationResult }) => {
+            return {
+              allTodoes: [...state.allTodoes, {
+                id: mutationResult.data.createTodo.id,
+                text: text,
+                complete: false,
+              }],
+            }
+          },
+        },
       }),
-      /*toggleTodo: (id, complete) => ({
+      toggleTodo: (id, complete) => ({
         mutation: gql`
           mutation toggleTodo($id: ID!, $complete: Boolean!) {
-            updateTodo(id: $id, complete: $complete) { id text complete }
-          }
-        `,
+            updateTodo(id: $id, complete: $complete) { id complete }
+          }`,
         variables: {
           id,
           complete,
+        },
+        updateQueries: {
+          todos: (state, { mutationResult }) => {
+            return {
+              allTodoes: state.allTodoes.map(t => {
+                if (t.id===id) {
+                  return {
+                    id: t.id,
+                    text: t.text,
+                    complete: mutationResult.data.updateTodo.complete,
+                  }
+                }
+                return t
+              }),
+            }
           },
         },
-      }),*/
+      }),
     }
   },
   mapQueriesToProps () {
     return {
       todos: {
         query: gql`
-          {
+          query todos {
             allTodoes {
               id
               complete
@@ -76,7 +100,6 @@ const TodoAppLinked = connect({
           }
         `,
         forceFetch: false,
-        //pollInterval: 1000,
       },
     }
   },
