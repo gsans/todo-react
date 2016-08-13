@@ -2,9 +2,7 @@ import React from 'react'
 
 export default class AddTodo extends React.Component {
   _onSubmit () {
-    this.props.addTodo(this.input.value).then(v => {
-      // this.props.refetch()
-    })
+    this.props.addTodo(this.input.value)
     this.input.value = ''
   }
 

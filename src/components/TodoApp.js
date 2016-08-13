@@ -11,13 +11,13 @@ class TodoApp extends React.Component {
   render () {
     return (
       <div>
-        <AddTodo addTodo={this.props.mutations.addTodo} refetch={this.props.todos.refetch} />
+        <AddTodo addTodo={this.props.mutations.addTodo} />
         <TodoList
           todos={this.props.todos.allTodoes || []}
           filter={this.props.filter}
           toggleTodo={this.props.mutations.toggleTodo}
         />
-        <Filters setFilter={this.props.setFilter} filter={this.props.filter} refetch={this.props.todos.refetch} />
+        <Filters setFilter={this.props.setFilter} filter={this.props.currentFilter} />
       </div>
     )
   }
