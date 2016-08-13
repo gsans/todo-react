@@ -1,10 +1,10 @@
 import React from 'react'
-import Filters from './Filters'
-import AddTodo from './AddTodo'
-import TodoList from './TodoList'
+import { connect } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import { connect } from 'react-apollo'
+import AddTodo from './AddTodo'
+import TodoList from './TodoList'
+import Filters from './Filters'
 
 class TodoApp extends React.Component {
 
