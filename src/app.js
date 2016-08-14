@@ -2,17 +2,11 @@ import React from 'react'
 import { render } from 'react-dom'
 import TodoApp from './components/TodoApp'
 
-import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
+import { client } from './client'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
 import './style.css'
-
-const networkInterface = createNetworkInterface('https://api.graph.cool/simple/v1/cirpiog0j09jw0156xp6me5wo')
-
-const client = new ApolloClient({
-  networkInterface,
-})
 
 function filter (state = 'SHOW_ALL', action) {
   if (action.type === 'SET_FILTER') {
