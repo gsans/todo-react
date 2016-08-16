@@ -42,7 +42,6 @@ const withTodos = graphql(
     },
   }
 )
-const TodoApp0 = withTodos(TodoApp)
 
 const withAddTodo = graphql(
   gql`mutation addTodo($text: String!) {
@@ -69,7 +68,6 @@ const withAddTodo = graphql(
     }),
   }
 )
-const TodoApp1 = withAddTodo(TodoApp0)
 
 const withToggleTodo = graphql(
   gql`mutation toggleTodo($id: ID!, $complete: Boolean!) {
@@ -101,9 +99,8 @@ const withToggleTodo = graphql(
     }),
   }
 )
-const TodoApp2 = withToggleTodo(TodoApp1)
 
-const TodoAppWithDataAndState = connect(
+const TodoAppWithState = connect(
   (state) => ({ currentFilter: state.filter }),
   (dispatch) => ({
     setFilter: (filter) => {
@@ -113,6 +110,6 @@ const TodoAppWithDataAndState = connect(
       })
     },
   }),
-)(TodoApp2)
+)(TodoApp)
 
-export default TodoAppWithDataAndState
+export default withTodos(withAddTodo(withToggleTodo(TodoAppWithState)))
