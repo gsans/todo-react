@@ -14,7 +14,7 @@ class TodoApp extends React.Component {
       <div>
         <AddTodo addTodo={this.props.addTodo} />
         <TodoList
-          todos={this.props.todos || []}
+          todos={this.props.todos}
           filter={this.props.currentFilter}
           toggleTodo={this.props.toggleTodo}
         />
@@ -37,7 +37,7 @@ const withTodos = graphql(
       if (data.loading) return { userLoading: true }
       if (data.error) return { hasErrors: true }
       return {
-        todos: data.allTodoes,
+        todos: data.allTodoes || [],
       }
     },
   }
