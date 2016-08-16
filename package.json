@@ -8,8 +8,9 @@
     "classnames": "2.2.5",
     "graphql-tag": "^0.1.9",
     "react": "^15.2.1",
-    "react-apollo": "^0.3.19",
+    "react-apollo": "^0.4.4",
     "react-dom": "^15.2.1",
+    "react-redux": "4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "2.1.0",
     "whatwg-fetch": "^1.0.0"
