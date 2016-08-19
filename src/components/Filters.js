@@ -7,13 +7,13 @@ export default class Filters extends React.Component {
     return (
       <div>
         Show: {' '}
-        <FilterLink selected={this.props.filter} filter={'SHOW_ALL'} setFilter={this.props.setFilter}>
+        <FilterLink type={'SHOW_ALL'} {...this.props}>
           All
         </FilterLink>{', '}
-        <FilterLink selected={this.props.filter} filter={'SHOW_ACTIVE'} setFilter={this.props.setFilter}>
+        <FilterLink type={'SHOW_ACTIVE'} {...this.props}>
           Active
         </FilterLink>{', '}
-        <FilterLink selected={this.props.filter} filter={'SHOW_COMPLETED'} setFilter={this.props.setFilter}>
+        <FilterLink type={'SHOW_COMPLETED'} {...this.props}>
           Completed
         </FilterLink>
       </div>
