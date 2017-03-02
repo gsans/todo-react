@@ -4,7 +4,7 @@ Example forked from [angular-apollo-todo-example](https://github.com/graphcool-e
 
 You can read the blog post [GraphQL and the amazing Apollo Client](https://medium.com/@gerard.sans/graphql-and-the-amazing-apollo-client-fe57e162a70c) covering parts of it. 
 
-Updated react-apollo to use 0.4.4.
+Updated react-apollo to use 0.13.0.
 
 ## Getting Started
 
