@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
 import gql from 'graphql-tag'
+import update from 'immutability-helper'
 
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
@@ -26,11 +27,7 @@ class TodoApp extends React.Component {
 
 const withTodos = graphql(
   gql`query todos {
-    allTodoes {
-      id
-      complete
-      text
-    }
+    allTodoes { id complete text }
   }`,
   {
     props: ({ ownProps, data }) => {
@@ -45,7 +42,7 @@ const withTodos = graphql(
 
 const withAddTodo = graphql(
   gql`mutation addTodo($text: String!) {
-    createTodo(text: $text, complete: false) { id }
+    createTodo(text: $text, complete: false) { id text complete }
   }`,
   {
     props: ({ ownProps, mutate }) => ({
@@ -54,13 +51,11 @@ const withAddTodo = graphql(
           variables: { text },
           updateQueries: {
             todos: (state, { mutationResult }) => {
-              return {
-                allTodoes: [...state.allTodoes, {
-                  id: mutationResult.data.createTodo.id,
-                  text: text,
-                  complete: false,
-                }],
-              }
+              return update(state, {
+                allTodoes: {
+                  $push: [ mutationResult.data.createTodo ],
+                },
+              })
             },
           },
         })
