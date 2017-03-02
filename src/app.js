@@ -15,7 +15,7 @@ function filter (state = 'SHOW_ALL', action) {
   return state
 }
 
-let combinedReducer = combineReducers({
+const combinedReducer = combineReducers({
   filter,
   apollo: client.reducer(),
 })
